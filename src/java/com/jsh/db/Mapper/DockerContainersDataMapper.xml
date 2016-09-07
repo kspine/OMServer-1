@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsh.db.dao.DockerContainersDataMapper" >
+  <resultMap id="BaseResultMap" type="com.jsh.db.DockerContainersData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="container_id" property="containerId" jdbcType="INTEGER" />
+    <result column="container_name" property="containerName" jdbcType="VARCHAR" />
+    <result column="cpu_percent" property="cpuPercent" jdbcType="VARCHAR" />
+    <result column="memory_usage" property="memoryUsage" jdbcType="VARCHAR" />
+    <result column="memory_limit" property="memoryLimit" jdbcType="VARCHAR" />
+    <result column="memory_percent" property="memoryPercent" jdbcType="VARCHAR" />
+    <result column="network_rx_packets" property="networkRxPackets" jdbcType="VARCHAR" />
+    <result column="network_tx_packets" property="networkTxPackets" jdbcType="VARCHAR" />
+    <result column="collect_time" property="collectTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, container_id, container_name, cpu_percent, memory_usage, memory_limit, memory_percent, 
+    network_rx_packets, network_tx_packets, collect_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jsh_docker_containers_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

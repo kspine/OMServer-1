@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsh.db.dao.HotsMapper" >
+  <resultMap id="BaseResultMap" type="com.jsh.db.Hots" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="os" property="os" jdbcType="VARCHAR" />
+    <result column="kernel" property="kernel" jdbcType="VARCHAR" />
+    <result column="num_cpus" property="numCpus" jdbcType="VARCHAR" />
+    <result column="cpu_model" property="cpuModel" jdbcType="VARCHAR" />
+    <result column="lo" property="lo" jdbcType="VARCHAR" />
+    <result column="eth0" property="eth0" jdbcType="VARCHAR" />
+    <result column="mem_total" property="memTotal" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `name`, os, kernel, num_cpus, cpu_model, lo, eth0, mem_total, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jsh_hosts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="com.jsh.db.Hots">
+    select
+    <include refid="Base_Column_List" />
+    from jsh_hosts
+  </select>
+
+</mapper>
